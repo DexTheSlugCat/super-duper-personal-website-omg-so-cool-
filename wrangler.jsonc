@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "web",
+	"name": "website",
 	"main": "src/index.ts",
 	"compatibility_date": "2026-05-08",
 	"migrations": [
