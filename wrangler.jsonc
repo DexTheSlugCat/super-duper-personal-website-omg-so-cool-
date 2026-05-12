@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "website",
+	"name": "web",
 	"main": "src/index.ts",
 	"compatibility_date": "2026-05-08",
 	"migrations": [
@@ -27,9 +27,23 @@
 			}
 		]
 	},
-	"observability": {
-		"enabled": true
-	},
+{
+  "observability": {
+    "enabled": false,
+    "head_sampling_rate": 1,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": true,
+      "persist": true,
+      "head_sampling_rate": 1
+    }
+  }
+}
 	"upload_source_maps": true,
 	"compatibility_flags": [
 		"nodejs_compat"
