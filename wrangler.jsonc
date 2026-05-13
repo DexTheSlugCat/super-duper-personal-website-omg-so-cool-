@@ -8,6 +8,8 @@
 	"main": "src/index.ts",
 	"compatibility_date": "2026-05-08",
 
+	"workers_dev": true,
+
 	"observability": {
 		"enabled": false,
 		"head_sampling_rate": 1,
@@ -24,16 +26,6 @@
 		},
 	},
 
-	"routes": [
-		{
-			"zone_id": "9ed18c4e1e49e21b50fad798d622168e",
-			"pattern": "web.dexkit.workers.dev",
-		},
-		{
-			"zone_id": "9ed18c4e1e49e21b50fad798d622168e",
-			"pattern": "api.dexkit.workers.dev",
-		},
-	],
 	"upload_source_maps": true,
 	"compatibility_flags": ["nodejs_compat"],
 	"ratelimits": [
