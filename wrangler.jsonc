@@ -47,6 +47,14 @@
 			},
 		},
 	],
+
+	"migrations": [
+		{
+			"tag": "v2",
+			"deleted_classes": ["MyDurableObject"],
+		},
+	],
+
 	"assets": {
 		"binding": "Assets",
 		"directory": "src/Public",
