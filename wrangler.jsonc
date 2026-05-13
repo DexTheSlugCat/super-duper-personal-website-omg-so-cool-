@@ -27,12 +27,12 @@
 	"routes": [
 		{
 			"zone_id": "9ed18c4e1e49e21b50fad798d622168e",
-			"pattern": "web.dexkit.workers.dev"
+			"pattern": "web.dexkit.workers.dev",
 		},
 		{
 			"zone_id": "9ed18c4e1e49e21b50fad798d622168e",
-			"pattern": "api.dexkit.workers.dev"
-		}
+			"pattern": "api.dexkit.workers.dev",
+		},
 	],
 	"upload_source_maps": true,
 	"compatibility_flags": ["nodejs_compat"],
@@ -53,11 +53,19 @@
 		"not_found_handling": "404-page",
 		"run_worker_first": false,
 	},
+	"durable_objects": {
+		"bindings": [
+			{
+				"class_name": "MyDurableObject",
+				"name": "MY_DURABLE_OBJECT",
+			},
+		],
+	},
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
 	 */
-	"placement": {  "mode": "smart" },
+	"placement": { "mode": "smart" },
 	/**
 	 * Bindings
 	 * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
