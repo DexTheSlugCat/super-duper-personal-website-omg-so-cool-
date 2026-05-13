@@ -7,38 +7,56 @@
 	"name": "web",
 	"main": "src/index.ts",
 	"compatibility_date": "2026-05-08",
-	"migrations": [
+
+	"observability": {
+		"enabled": false,
+		"head_sampling_rate": 1,
+		"logs": {
+			"enabled": true,
+			"head_sampling_rate": 1,
+			"persist": true,
+			"invocation_logs": true,
+		},
+		"traces": {
+			"enabled": true,
+			"persist": true,
+			"head_sampling_rate": 1,
+		},
+	},
+
+	"routes": [
 		{
-			"new_sqlite_classes": [
-				"MyDurableObject"
-			],
-			"tag": "v1"
+			"pattern": "web.dexkit.workers.dev"
+		},
+		{
+			"pattern": "api.dexkit.workers.dev"
 		}
 	],
-	"assets": {
-		// The path to the directory containing the `index.html` file to be served at `/`
-		"directory": "./public"
-	},
-	"durable_objects": {
-		"bindings": [
-			{
-				"class_name": "MyDurableObject",
-				"name": "MY_DURABLE_OBJECT"
-			}
-		]
-	},
-	"observability": {
-		"enabled": true
-	},
+
 	"upload_source_maps": true,
-	"compatibility_flags": [
-		"nodejs_compat"
-	]
+	"compatibility_flags": ["nodejs_compat"],
+	"ratelimits": [
+		{
+			"name": "Ratelimit",
+			"namespace_id": "67",
+
+			"simple": {
+				"limit": 30,
+				"period": 10,
+			},
+		},
+	],
+	"assets": {
+		"binding": "Assets",
+		"directory": "src/Public",
+		"not_found_handling": "404-page",
+		"run_worker_first": false,
+	},
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
 	 */
-	// "placement": {  "mode": "smart" }
+	"placement": {  "mode": "smart" },
 	/**
 	 * Bindings
 	 * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
@@ -52,6 +70,11 @@
 	 * https://developers.cloudflare.com/workers/configuration/secrets/
 	 */
 	// "vars": {  "MY_VARIABLE": "production_value" }
+	/**
+	 * Static Assets
+	 * https://developers.cloudflare.com/workers/static-assets/binding/
+	 */
+	// "assets": {  "directory": "./public/",  "binding": "ASSETS" }
 	/**
 	 * Service Bindings (communicate between multiple Workers)
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
