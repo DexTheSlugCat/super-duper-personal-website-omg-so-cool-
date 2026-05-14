@@ -20,6 +20,10 @@ export default {
 			return new Response("Too Many Requests", { status: 429 });
 		}
 
+		if (Url.hostname.startsWith("api.")) {
+			return new Response("api is currently unavailable", { status: 503 });
+		}
+
 		if (Url.pathname === "/") {
 			return await Enviroment.Assets.fetch("/src/Public/index.html");
 		}
